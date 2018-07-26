@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <!--<link rel="stylesheet" href="assets/css/tabs.css">-->
+ <link rel="stylesheet" href="assets/css/tabs2.css">
+   <link rel="stylesheet" href="assets/css/index.css">
+   <link rel="stylesheet" href="assets/css/header-item.css">
+</head>
+    <nav>
+        <div class="nav-wrapper">
+            <div id="menu-item">
+            <select class="browser-default">
+                <option value="" disabled selected style="color: #9E9E9E;">New</option>
+                <option value="1">Conexão</option>
+                <option  onclick="openModalConexao();" value="2"><a class="modal-trigger" href="#modal1">Consulta</a></option>
+
+            </select>
+            </div>
+            <div class="conexao-selecionada">
+            <span class=" " >Conexao site</span> <small>Mysql</small> </div>
+            <ul  class="itens-tabs">
+            </ul>
+        </div>
+    </nav>
+<div class="content">
+ 
+        <ul class="container-tab">
+          
+        </ul>
+        <div id="secoes-tabs">
+
+        </div>
+    
+</div>
+<ul id="slide-out" class="sidenav">
+    <li>
+        <span class="helper-text" data-error="wrong" data-success="right">Busca em conexões</span>
+
+    </li>
+    <li class="search">
+        <div class="search-wrapper">
+            <input id="search" style="border:none;"
+                   placeholder="Search"><i class="material-icons" style="position: absolute;line-height: 2;
+    margin-left: -33px;">search</i>
+            <div class="search-results"></div>
+        </div>
+    </li>
+    <li>
+        <ul class="collection" id="lista-conexoes"></ul>
+    </li>
+
+  </ul>
+<footer class="page-footer" style="     width: 100%;
+    position: absolute;
+    line-height: 0px;
+    bottom: 0;
+    padding: 3px;
+    border-top: 1px solid rgba(158, 158, 158, 0.49);">
+    <a href="#" data-target="slide-out" class="sidenav-trigger" style="    color: white;">
+        <i class="material-icons" style=" color: #9E9E9E;    font-size: 18px;
+    font-weight: 100;">chrome_reader_mode</i></a>
+</footer>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-header">
+        Nova consulta
+      <i class="material-icons modal-header-close modal-close">close</i>
+    </div>
+    <div class="modal-content">
+      <form id="nova-conexao">
+        <div class="row">
+          <div class="input-field col s6">
+              <input value="" placeholder="nome da nova conexão" id="nome" name="nome" type="text" class="validate">
+              <label class="active" for="nome">Nome</label>
+          </div>
+          <div class="input-field col s6">
+                <select required name="driver">
+                  <option selected>Selecione</option>
+                  <option value="1">Mysql</option>
+                  <option value="2">PostgreSQL</option>
+                  <option value="3">SQL server</option>
+                </select>
+                <label>Selecione o driver</label>
+              </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+                <input value="" placeholder="mysql.host.example.com.br" id="host" name="host" type="text" class="validate">
+                <label class="active" for="host">Host</label>
+            </div>
+            <div class="input-field col s6">
+                <input value="" placeholder="senha de acesso" id="pwd" type="text" name="pwd" class="validate">
+                <label class="active" for="pwd">Senha de acesso</label>
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" onclick="newConection($('#nova-conexao'));" class="modal-close waves-effect waves-green btn-flat">salvar</a>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script> window.$ = window.jQuery = require('jQuery');</script>
+<script src="assets/js/index.js"></script>
+
+<script>
+    var view = require("./rederers/consultas.js");
+
+    require("./rederers/index.js");
+    // renderer process
+    var options={};
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, options);
+    });
+    
+    const electron = require("electron");
+    const {ipcRenderer}= electron;
+
+    //add:consulta
+    function openModalNewFilter(){
+        ipcRenderer.send('add:consulta', "12");
+    }
+
+    function openModalConexao(){
+        $('#modal1').open();
+    }
+    function newConection(form){
+        var config = {};
+        $(form).serializeArray().map(function(item) {
+            if ( config[item.name] ) {
+                if ( typeof(config[item.name]) === "string" ) {
+                    config[item.name] = [config[item.name]];
+                }
+                config[item.name].push(item.value);
+            } else {
+                config[item.name] = item.value;
+            }
+        });
+      ipcRenderer.send('add:conexao', config);
+    }
+    
+</script>
+</body>
+</html>

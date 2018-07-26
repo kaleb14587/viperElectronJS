@@ -1,0 +1,46 @@
+/** This is the wrapper box that the drag and drop box is not allowed to pass outside of this box.**/
+#boxdemo{
+    width:400px;
+    height:200px;
+    position:relative;
+    padding:10px;
+    border:solid 1px blue;
+}
+
+/** style for droppable content **/
+.droppable {
+    width: 150px;
+    height: 100px;
+    float: left;
+    border:solid 1px gray;
+    margin-left:150px;
+}
+
+/** style for draggable content **/
+.draggable{
+    background-color:#d9de48;
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+    font-size:12px;
+    font-weight:bold;
+    width:75px;
+    height:75px;
+    float: left;
+}
+
+/** style when an object is moving hover **/
+.hoverClass{
+    background:#339bfb;
+    color:#ffffff;
+}
+
+/** style for droppable when the moveable object is dropped **/
+.dropClass{
+    background:#55d532;
+}
+
+/** clear the float used by other draggable and moveable objects **/
+.clear{
+    clear:both;
+}

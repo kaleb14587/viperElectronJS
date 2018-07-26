@@ -1,0 +1,22 @@
+{
+  "name": "vyper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron"
+  ],
+  "author": "kaleb borda fonseca",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^2.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "nedb": "^1.8.0"
+  }
+}

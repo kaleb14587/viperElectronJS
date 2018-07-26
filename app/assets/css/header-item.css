@@ -1,0 +1,72 @@
+.container-items{
+    border-top: .5px solid rgba(0, 0, 0, 0.12);
+}
+
+.container-items div{
+    padding: 15px;
+}
+.container-items label{
+    font-weight: bold;
+    color: #4a4a4a;
+}
+.container-items .paginate-body{
+    overflow: hidden;
+    padding-bottom: 0;
+}
+.container-items .paginate-body ul{
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+.container-items .body{
+    padding: 0;
+    overflow: auto;
+    background: white;
+    z-index: 1;
+    box-shadow: 0px 2px 0px -1px rgba(0, 0, 0, 0.08) inset;
+    border-top: 1px solid rgba(0, 0, 0, 0.24);
+}
+.container-items .paginate-body li{
+    float: left;
+    /* background: black; */
+    padding: 11px;
+    font-size: 11px;
+    cursor: pointer;
+    color: rgba(29, 29, 29, 0.64);
+}
+.container-items .paginate-body li:hover{
+    color: black;
+}
+.container-items .paginate-body li.active{
+    color: #1d1d1d;
+    font-weight: bold;
+    border-bottom: 2px solid #de4f21;
+}
+
+/*BODY */
+.container-items .options{
+    width: 200px;
+    min-height: 500px;
+    border-right: 1px solid rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.03);
+
+}
+.options .options-title{
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.65);
+}
+.list-tables li{
+    padding: 5px;
+
+}
+.list-tables li:hover{
+    background: rgba(0, 0, 0, 0.04);
+}
+.list-tables .table-icon{
+    width: 14px;
+    line-height: 27px;
+}
+.list-tables label{
+    vertical-align: 3px;
+    margin-left: 10px;
+}
